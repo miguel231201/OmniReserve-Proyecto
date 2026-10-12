@@ -1,6 +1,6 @@
 using OmniReserve.Application;
 using OmniReserve.Infrastructure;
-using OmniReserve.Infrastructure;
+using OmniReserve.Domain.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 

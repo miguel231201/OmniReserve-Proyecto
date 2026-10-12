@@ -37,7 +37,7 @@ public class RoomRepository : IRoomRepository
     public async Task<List<Room>> GetRoomsByTypeRawAsync(string roomType)
     {
         return await _context.Rooms
-            .FromSql($"SELECT * FROM \"Rooms\" WHERE \"Type\" = {roomType}")
+            .FromSql($"SELECT * FROM \"Rooms\" WHERE \"Type\" = {{roomType}}")
             .ToListAsync();
     }
 }
