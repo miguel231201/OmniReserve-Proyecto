@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using OmniReserve.Application.Common.Exceptions;
+using OmniReserve.Domain.Exceptions;
 
 namespace OmniReserve.Api.Middlewares;
 
@@ -30,6 +31,7 @@ public class GlobalExceptionHandlingMiddleware
 
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
+
         // 1. Manejo Específico: Errores de Validación de Formato
         if (exception is ValidationException validationException)
         {
@@ -48,6 +50,21 @@ public class GlobalExceptionHandlingMiddleware
             context.Response.StatusCode = StatusCodes.Status400BadRequest;
 
             await context.Response.WriteAsync(JsonSerializer.Serialize(validationProblem));
+            return;
+        }
+        else if (exception is DomainException domainExecption)
+        {
+            var domainProblem = new ProblemDetails
+            {
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Error de Dominio",
+                Type = "https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.1",
+                Detail = domainExecption.Message,// Aquí se expone el mensaje "privado" diseñado en la entidad
+            };
+            context.Response.ContentType = "application/problem+json";
+            context.Response.StatusCode = StatusCodes.Status400BadRequest;
+
+            await context.Response.WriteAsync(JsonSerializer.Serialize(domainProblem));
             return;
         }
 
