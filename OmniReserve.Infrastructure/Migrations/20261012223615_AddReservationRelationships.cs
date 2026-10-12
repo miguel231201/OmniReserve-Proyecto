@@ -71,6 +71,7 @@ namespace OmniReserve.Infrastructure.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            // (Fragmento interno generado automáticamente por EF Core)
             migrationBuilder.CreateIndex(
                 name: "IX_Reservations_RoomId",
                 table: "Reservations",
@@ -80,6 +81,23 @@ namespace OmniReserve.Infrastructure.Migrations
                 name: "IX_Reservations_UserId",
                 table: "Reservations",
                 column: "UserId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Reservations_Rooms_RoomId",
+                table: "Reservations",
+                column: "RoomId",
+                principalTable: "Rooms",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Reservations_Users_UserId",
+                table: "Reservations",
+                column: "UserId",
+                principalTable: "Users",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
+
         }
 
         /// <inheritdoc />
