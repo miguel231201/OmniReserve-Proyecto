@@ -20,6 +20,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<OmniReserve.Api.Middlewares.GlobalExceptionHandlingMiddleware>();
+
 // 3. Middlewares restantes
 app.UseHttpsRedirection();
 app.UseAuthorization();
