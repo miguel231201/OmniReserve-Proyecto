@@ -26,7 +26,6 @@ public class RoomsController : ControllerBase
         return Ok(roomId);
 
     }
-
     [HttpGet("{id}")]
     public async Task<IActionResult> GetRoom(Guid id)
     {
