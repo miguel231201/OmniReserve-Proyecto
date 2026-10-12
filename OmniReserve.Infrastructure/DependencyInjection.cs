@@ -18,6 +18,8 @@ public static class DependencyInjection
         // Repositorio
         services.AddScoped<IRoomRepository, RoomRepository>();
 
+        services.AddScoped<IReservationRepository, ReservationRepository>();
+
         return services;
     }
 }
