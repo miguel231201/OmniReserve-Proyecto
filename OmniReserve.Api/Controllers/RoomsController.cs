@@ -19,6 +19,10 @@ public class RoomsController : ControllerBase
     public async Task<IActionResult> CreateRoom([FromBody] CreateRoomCommand command)
     {
         // Se envía el objeto a MediatR, este buscará a su Handler
+        var roomId = await _sender.Send(command);
+
+        // Se retorna HTTP 200 OK incluyendo la data en formato JSON automáticamente
+        return Ok(roomId);
 
     }
 }
