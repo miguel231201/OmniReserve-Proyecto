@@ -19,8 +19,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                    emailStr => new EmailAddress(emailStr) // Cómo leer (SQL a C#)
                )
                .HasColumnName("Email") // Fuerza el nombre de la columna en la BD
-               .HasMaxLength(255)
-               .IsRequired();
+                .HasMaxLength(255) // Limita la longitud en la BD
+                .IsRequired(); // No permite nulos en la BD
 
         // Opcional recomendado: El email debe ser único en la BD
         builder.HasIndex(user => user.Email)
