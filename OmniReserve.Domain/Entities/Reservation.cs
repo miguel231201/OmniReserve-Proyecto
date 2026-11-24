@@ -15,6 +15,8 @@ public class Reservation
 
     public Room Room { get; private set; } = null!;
     public User User { get; private set; } = null!;
+    public DateTime EndDate { get; set; }
+    public DateTime StartDate { get; set; }
 
     public Reservation(Guid userId, Guid roomId, DateTime checkInDate, DateTime checkOutDate, decimal totalPrice)
     {
