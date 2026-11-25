@@ -5,6 +5,11 @@ namespace OmniReserve.Domain.Entities;
 
 public class Reservation
 {
+    private object roomId;
+    private object userId;
+    private object startDate;
+    private object endDate;
+
     public Guid Id { get; private set; }
     public Guid UserId { get; private set; }
     public Guid RoomId { get; private set; }
@@ -30,5 +35,13 @@ public class Reservation
         CheckOutDate = checkOutDate;
         TotalPrice = totalPrice;
         Status = ReservationStatus.Pending;
+    }
+
+    public Reservation(object roomId, object userId, object startDate, object endDate)
+    {
+        this.roomId = roomId;
+        this.userId = userId;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 }

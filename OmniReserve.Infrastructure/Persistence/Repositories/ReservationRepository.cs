@@ -21,15 +21,4 @@ public class ReservationRepository : IReservationRepository
             .Include(r => r.Room)
             .FirstOrDefaultAsync(r => r.Id == id);
     }
-    public async Task<bool> IsRoomAvailableAsync(Guid roomId, DateTime start, DateTime end)
-    {
-        // Regla: Hay colisión si (ReservaExistente.Inicio < FinSolicitado) Y (ReservaExistente.Fin > InicioSolicitado)
-        bool isOccupied = await _context.Reservations
-            .AnyAsync(r => r.RoomId == roomId &&
-                           r.StartDate < end &&
-                           r.EndDate > start);
-
-        // Si está ocupada, NO está disponible
-        return !isOccupied;
-    }
 }
